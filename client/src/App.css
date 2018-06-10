@@ -57,6 +57,14 @@
   cursor: pointer;
 }
 
+.Header a {
+  font-size: 14px;
+  margin: 10px 15px;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(0,0,0);
+}
+
 .Body {
   position: relative;
   top: 90px;
@@ -96,7 +104,7 @@
   background-color: transparent;
 }
 
-.LoginPage {
+.SigninPage {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -105,6 +113,34 @@
 }
 
 .LoginBox {
-  width: 180px;
-  height: 120px;
+  width: 300px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dataBox {
+  flex-basis:70%;
+  display: flex;
+  flex-direction: row;
+}
+
+.buttonBox {
+  flex-basis:30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.labelBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }

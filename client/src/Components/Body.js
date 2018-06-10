@@ -50,9 +50,11 @@ export default class Body extends Component {
     });
     const content = article?article.content:'';
     const title = article?article.title:'';
+    const author = article?article.author:'';
+    const time = article?article.time:'';
     return (
       <div className="Body">
-        <ArticleBody content={content} title={title}/>
+        <ArticleBody content={content} title={title} author={author} time={time}/>
         <ArticleList list={this.state.list} handleClick={this.setArticleId.bind(this) }/>
       </div>
     )

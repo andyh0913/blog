@@ -1,15 +1,37 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import Header from './Header';
 import Body from './Body'
-import LoginPage from './LoginPage'
+
 
 export default class Main extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      username:''
+    }
+  }
+
+  componentWillMount() {
+    fetch("http://localhost:3001/signin",(req,res)=>{
+      method: "POST"
+    }).then((res)=>{
+      return res.json();
+    }).then((data)=>{
+      if(data.success){
+        console.log("signINyeahhhhhh");
+        this.setState({username: data.user.username});
+      }
+    }).catch((err)=>{
+      console.log("signin error",err);
+    })
+  }
+
   render() {
     return (
-      <Switch>
-        <Route exact path="/signin" component={LoginPage} />
-        <Route component={Body}/>
-      </Switch>
+      <div>
+        <Header username={this.state.username}/>
+        <Body />
+      </div>
     )
   }
 }
