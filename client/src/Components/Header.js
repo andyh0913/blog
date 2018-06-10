@@ -6,7 +6,9 @@ export default class Header extends Component {
       <div className="Header">
         <h1>Blog Title</h1>
         <p>User Name</p>
-        <input type="button" value="Logout"/>
+        <p>View Articles</p>
+        <p>New Post</p>
+        <p>Logout</p>
       </div>
     )
   }

@@ -43,30 +43,18 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .Header h1 {
-  display: inline-block;
   position: absolute;
   left:50px;
-  line-height:normal;
-  vertical-align: middle;
 }
 
 .Header p {
-  display: inline-block;
-  position: absolute;
-  right:120px;
   font-size: 14px;
-}
-
-.Header input {
-  display: inline-block;
-  position: absolute;
-  right:40px;
-  font-size:14px;
-  border:none;
-  background-color: transparent;
+  margin: 10px 15px;
+  cursor: pointer;
 }
 
 .Body {
@@ -80,7 +68,7 @@
 
 .ArticleBody {
   flex-basis: 80%;
-  padding: 10px;
+  padding: 20px;
 }
 
 .ArticleBody h2 {
@@ -100,9 +88,23 @@
 
 .ArticleListUnit {
   margin:10px;
+  cursor: pointer;
 }
 
 .ArticleListUnit input {
   border: none;
   background-color: transparent;
+}
+
+.LoginPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LoginBox {
+  width: 180px;
+  height: 120px;
 }

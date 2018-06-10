@@ -7,7 +7,7 @@ export default class ArticleListUnit extends Component {
   render() {
     return (
       <div className="ArticleListUnit">
-        <input type="button" onClick={ ()=> {this.props.handleClick(this.props.id);} } value={this.props.title} />
+        <p onClick={ ()=> {this.props.handleClick(this.props.id)} } >{this.props.title}</p>
       </div>
     )
   }
