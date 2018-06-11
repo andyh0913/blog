@@ -11,7 +11,7 @@ export default class SigninPage extends Component {
 
   handleButtonClick() {
     //console.log(this.state);
-    fetch('http://localhost:3001/signin',{
+    fetch('http://localhost:3000/data/signin',{
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -28,7 +28,6 @@ export default class SigninPage extends Component {
     }).then((data)=>{
       console.log(data);
       if(data.success){
-        this.props.login(data.user._id,data.user.username);
         window.location="/";
       }
       else{

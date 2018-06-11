@@ -12,7 +12,7 @@ export default class Main extends Component {
   }
 
   componentWillMount() {
-    fetch("http://localhost:3001/signin",(req,res)=>{
+    fetch("http://localhost:3000/data/signin",(req,res)=>{
       method: "POST"
     }).then((res)=>{
       return res.json();

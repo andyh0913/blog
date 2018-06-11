@@ -5,7 +5,7 @@ export default class SignupPage extends Component {
     return (
       <div className="SigninPage"> 
         <iframe width="0" height="0" frameborder="0" name="dummyframe" id="dummyframe"></iframe>
-        <form action="http://localhost:3001/signup" method="post" target="dummyframe">
+        <form action="http://localhost:3000/data/signup" method="post" target="dummyframe">
           <div className="LoginBox">
             <div className="dataBox">
               <div className="labelBox">

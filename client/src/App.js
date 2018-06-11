@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import logo from './logo.svg';
 import './App.css';
 import Main from './Components/Main';
 import SigninPage from './Components/SigninPage'
@@ -26,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/signin" render={()=><SigninPage login={this.login.bind(this)} />} />
+          <Route exact path="/signin" component={SigninPage} />
           <Route exact path="/" render={()=><Main username={this.state.username} />}/>
           <Route exact path="/signup" component={SignupPage} />
         </Switch>
