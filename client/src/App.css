@@ -144,3 +144,20 @@
   flex-direction: column;
   align-items: flex-end;
 }
+
+.NewPostPage {
+  width: 100vw;
+  height: 100vh;
+}
+
+.PostBox {
+  position: relative;
+  top: 90px;
+  text-align: left;
+  padding: 20px;
+}
+
+#TextBox {
+  width: 90%;
+  height: 200px;
+}

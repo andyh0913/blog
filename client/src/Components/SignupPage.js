@@ -12,6 +12,18 @@ class SignupPage extends Component {
   }
 
   handleButtonClick() {
+    if(!this.state.account){
+      window.alert("Please fill in the account.");
+      return;
+    }
+    if(!this.state.password){
+      window.alert("Please fill in the password.");
+      return;
+    }
+    if(!this.state.username){
+      window.alert("Please fill in the username.");
+      return;
+    }
     //console.log(this.state);
     fetch('http://localhost:3001/signup',{
       method: 'POST',

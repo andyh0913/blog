@@ -5,6 +5,7 @@ import './App.css';
 import Main from './Components/Main';
 import SigninPage from './Components/SigninPage'
 import SignupPage from './Components/SignupPage'
+import NewPostPage from './Components/NewPostPage'
 
 class App extends Component {
   constructor(props){
@@ -27,8 +28,9 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/signin" render={()=><SigninPage login={this.login.bind(this)} />} />
+          <Route exact path="/signup" render={()=><SignupPage login={this.login.bind(this)} />} />
+          <Route exact path="/newpost" render={()=><NewPostPage username={this.state.username} />} />
           <Route exact path="/" render={()=><Main username={this.state.username} />}/>
-          <Route exact path="/signup" component={SignupPage} />
         </Switch>
       </div>
     );

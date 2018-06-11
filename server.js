@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.post('/articles',(req,res)=>{
+app.post('/newpost',(req,res)=>{
   console.log(req.body);
   var article = new Article({
     author: req.body.author,
@@ -20,9 +20,9 @@ app.post('/articles',(req,res)=>{
     title: req.body.title
   });
 
-  article.save().then((doc)=>{
+  article.save().then((article)=>{
     console.log("article saved");
-    res.send(doc);
+    res.send({article});
   },(e)=>{
     console.log("save failed");
     res.send(e);
