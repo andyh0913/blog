@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import bodyParser from 'body-parser';
 
 import {mongoose} from './mongoose.js';
@@ -7,16 +6,6 @@ import {Article} from './models/Article';
 import {User} from './models/User'
 
 var app = express();
-
-app.use(session({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge:  7 * 24 * 3600 * 1000, // save for a week
-    secure: false
-  }
-}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -52,11 +41,6 @@ app.get('/articles',(req,res)=>{
 })
 
 app.post('/signin',(req,res)=>{
-  console.log(req.session);
-  if(req.session.userId){
-    console.log("yes");
-    return res.send({user,success: true});
-  }
   User.findOne({account: req.body.account,password: req.body.password},(err,user)=>{
     if (err) {
       res.send(err);
@@ -67,8 +51,6 @@ app.post('/signin',(req,res)=>{
       return console.log("user not exist or wrong password");
     }
     console.log("user._id is " + user._id);
-    req.session.userId = 'user._id';
-    console.log(req.session);
     res.send({user,success: true});
     //res.redirect("/");
   });
@@ -84,7 +66,7 @@ app.post('/signup',(req,res)=>{
       return console.log("sign up error",err);
     }
     if (user) {
-      res.send({exist: true});
+      res.send({user,success: false});
       return console.log("user existed");
     }
     var newUser = new User();
@@ -93,7 +75,7 @@ app.post('/signup',(req,res)=>{
         newUser.username = req.body.username;
         newUser.save().then((user)=>{
           console.log("user created");
-          res.send(user);
+          res.send({user,success: true});
         },(err)=>{
           console.log("sign up failed");
           res.send(err);

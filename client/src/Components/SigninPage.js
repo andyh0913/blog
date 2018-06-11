@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
-export default class SigninPage extends Component {
+class SigninPage extends Component {
   constructor(props) {
     super(props);
     this.state={
@@ -29,7 +30,7 @@ export default class SigninPage extends Component {
       console.log(data);
       if(data.success){
         this.props.login(data.user._id,data.user.username);
-        window.location="/";
+        this.props.history.push("/");
       }
       else{
         window.alert("Wrong account or password!");
@@ -65,3 +66,5 @@ export default class SigninPage extends Component {
     )
   }
 }
+
+export default withRouter(SigninPage);
