@@ -29,6 +29,19 @@ app.post('/newpost',(req,res)=>{
   })
 });
 
+app.post('/delete',(req,res)=>{
+  Article.deleteOne({_id:req.body._id},(err)=>{
+    if (err) {
+      res.send(err);
+      return console.log("article delete err",err);
+    }
+    res.send({success: true});
+  });
+},(e)=>{
+  console.log("delete failed");
+  res.send(e);
+});
+
 app.get('/articles',(req,res)=>{
   //console.log("get articles");
   Article.find().then((articles)=>{

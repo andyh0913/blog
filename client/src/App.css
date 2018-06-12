@@ -96,12 +96,36 @@
 
 .ArticleListUnit {
   margin:10px;
-  cursor: pointer;
+  width:100%;
+  text-align: left;
 }
 
-.ArticleListUnit input {
+.ArticleListUnit p {
+  cursor: pointer;
+  text-align: left;
+  display: inline-block;
+}
+
+.ArticleListUnit h3 {
+  cursor: pointer;
+  position: absolute;
+  display: inline-block;
+  right: 20px;
   border: none;
   background-color: transparent;
+  font-weight: bold;
+  color: rgb(0,0,0);
+  opacity: 0.2;
+}
+
+.ArticleListUnit h3:hover {
+  color: rgb(255,0,0);
+  opacity: 0.5;
+}
+
+.ArticleListUnit h3:active {
+  color: rgb(255,0,0);
+  opacity: 1;
 }
 
 .SigninPage {

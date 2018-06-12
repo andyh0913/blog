@@ -55,7 +55,7 @@ export default class Body extends Component {
     return (
       <div className="Body">
         <ArticleBody content={content} title={title} author={author} time={time}/>
-        <ArticleList list={this.state.list} handleClick={this.setArticleId.bind(this) }/>
+        <ArticleList list={this.state.list} handleClick={this.setArticleId.bind(this)} handleReload={this.handleArticleLoad.bind(this)} />
       </div>
     )
   }
