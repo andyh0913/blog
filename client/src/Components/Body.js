@@ -18,7 +18,7 @@ export default class Body extends Component {
   }
 
   handleArticleLoad() {
-    fetch('http://localhost:3001/newpost',{
+    fetch('http://localhost:3001/articles',{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
