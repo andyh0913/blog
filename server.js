@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import bodyParser from 'body-parser';
 import path from 'path';
 import webpack from 'webpack';
@@ -12,33 +11,12 @@ import {User} from './models/User'
 
 var app = express();
 
-app.use(express.static(path.join(__dirname, '/')))
-
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
-app.use(require('webpack-hot-middleware')(compiler));
-
-
-
-app.use(session({
-  secret: 'secfadffret',
-  cookie: {
-    maxAge:  60 * 1000
-  }
-}));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, 'client/public/index.html'));
-})
-
-app.post('/data/articles',(req,res)=>{
+app.post('/newpost',(req,res)=>{
   console.log(req.body);
   var article = new Article({
     author: req.body.author,
@@ -46,16 +24,29 @@ app.post('/data/articles',(req,res)=>{
     title: req.body.title
   });
 
-  article.save().then((doc)=>{
+  article.save().then((article)=>{
     console.log("article saved");
-    res.send(doc);
+    res.send({article});
   },(e)=>{
     console.log("save failed");
     res.send(e);
   })
 });
 
-app.get('/data/articles',(req,res)=>{
+app.post('/delete',(req,res)=>{
+  Article.deleteOne({_id:req.body._id},(err)=>{
+    if (err) {
+      res.send(err);
+      return console.log("article delete err",err);
+    }
+    res.send({success: true});
+  });
+},(e)=>{
+  console.log("delete failed");
+  res.send(e);
+});
+
+app.get('/articles',(req,res)=>{
   //console.log("get articles");
   Article.find().then((articles)=>{
     //console.log("articles found");
@@ -66,12 +57,7 @@ app.get('/data/articles',(req,res)=>{
   })
 })
 
-app.post('/data/signin',(req,res)=>{
-  console.log(req.session, 'signin');
-  if(req.session.userId){
-    console.log("yes");
-    return res.send({user,success: true});
-  }
+app.post('/signin',(req,res)=>{
   User.findOne({account: req.body.account,password: req.body.password},(err,user)=>{
     if (err) {
       res.send(err);
@@ -82,12 +68,7 @@ app.post('/data/signin',(req,res)=>{
       return console.log("user not exist or wrong password");
     }
     console.log("user._id is " + user._id);
-    req.session.userId = user._id;
-    req.session.save(() => {
-      res.send({user,success: true});
-    });
-    console.log(req.session);
-    
+    res.send({user,success: true});
     //res.redirect("/");
   });
 },(e)=>{
@@ -102,7 +83,7 @@ app.post('/data/signup',(req,res)=>{
       return console.log("sign up error",err);
     }
     if (user) {
-      res.send({exist: true});
+      res.send({user,success: false});
       return console.log("user existed");
     }
     var newUser = new User();
@@ -111,7 +92,7 @@ app.post('/data/signup',(req,res)=>{
         newUser.username = req.body.username;
         newUser.save().then((user)=>{
           console.log("user created");
-          res.send(user);
+          res.send({user,success: true});
         },(err)=>{
           console.log("sign up failed");
           res.send(err);
