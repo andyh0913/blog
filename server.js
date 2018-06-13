@@ -72,7 +72,7 @@ app.post('/signin',(req,res)=>{
   res.send(e);
 });
 
-app.post('/data/signup',(req,res)=>{
+app.post('/signup',(req,res)=>{
   User.findOne({account: req.body.account,password: req.body.password},(err,user)=>{
     if (err) {
       res.send(err);
@@ -99,6 +99,6 @@ app.post('/data/signup',(req,res)=>{
   res.send(err);
 });
 
-app.listen(3000, ()=>{
-  console.log('Server listening on port 3000');
+app.listen(3001, ()=>{
+  console.log('Server listening on port 3001');
 });
