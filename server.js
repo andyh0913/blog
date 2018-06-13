@@ -1,9 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import path from 'path';
-import webpack from 'webpack';
-var config = require('./webpack.config');
-var compiler = webpack(config);
 
 import {mongoose} from './mongoose.js';
 import {Article} from './models/Article';
