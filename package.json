@@ -2,6 +2,7 @@
   "name": "blog",
   "version": "0.0.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node ./server.js --presets es2015",
     "dev": "webpack -d --watch",
